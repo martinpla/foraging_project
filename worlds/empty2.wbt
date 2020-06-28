@@ -1,0 +1,50 @@
+#VRML_SIM R2020a utf8
+WorldInfo {
+  inkEvaporation 0.01
+  northDirection 0 0 1
+  lineScale 1
+}
+Viewpoint {
+  orientation -1 0 0 1.57
+  position 1 16.392143821593613 0.012257179146944271
+  follow "Khepera III"
+  followType "None"
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 10 10
+  floorTileSize 10 10
+}
+OilBarrel {
+  translation 4 0.44 -4.41
+}
+Khepera3 {
+  translation 0.94966 0 0.00258795
+  rotation 0 -1 0 1.5708
+  controller "ForagingControllerKhepera"
+  supervisor TRUE
+  turretSlot [
+    Pen {
+      translation 0 0.02 0
+      inkDensity 1
+      leadSize 0.025
+      maxDistance 3
+    }
+    Compass {
+    }
+    GPS {
+    }
+  ]
+}
+DEF Grid Group {
+  children [
+    DEF Cell_-8_-17 Cell {
+      translation -0.8 0.01 1.7000000000000002
+      cellSize 0.1 0.1
+      value 12
+    }
+  ]
+}

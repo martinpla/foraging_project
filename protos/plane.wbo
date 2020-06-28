@@ -1,0 +1,16 @@
+#VRML_OBJ R2020a utf8
+Transform {
+  translation 0 1 0
+  children [
+    Shape {
+      appearance PBRAppearance {
+        roughness 0.2
+        metalness 0
+        emissiveColor 0 0.666667 1
+      }
+      geometry Plane {
+        size 0.2 0.2
+      }
+    }
+  ]
+}

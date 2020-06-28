@@ -1,0 +1,38 @@
+#VRML_OBJ R2020a utf8
+PROTO FoodSource  
+[ 
+  field SFVec3f    translation     3 0 3         # Is `Transform.translation`. 
+  unconnectedField SFInt32 value 10
+  unconnectedField SFFloat foodRadius 0.4
+  unconnectedField SFFloat reachRadius 1.5
+]
+{
+  Transform{
+    translation IS translation
+    children [
+      Shape {
+	    appearance Appearance {
+          material Material {
+            diffuseColor 0 1 0
+            transparency 0.6
+          }
+        }
+        geometry Sphere {
+        radius IS foodRadius
+        }
+      }
+      Shape {
+        appearance Appearance {
+          material Material {
+            diffuseColor 0 1 0
+            transparency 0.8
+          }
+        }
+        geometry Cylinder {
+          height 0.01
+          radius IS reachRadius
+        }
+      }
+    ]
+  }
+}
