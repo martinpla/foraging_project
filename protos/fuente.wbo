@@ -1,0 +1,28 @@
+#VRML_OBJ R2020a utf8
+FoodSource Transform {
+  translation 1 0 -1
+  
+  unconnectedField SFInt32 value 10
+  unconnectedField SFFloat foodRadius 0.4
+  unconnectedField SFFloat reachRadius 1.5
+  
+  children [
+    Shape {
+      geometry Sphere {
+        radius ID foodRadius
+      }
+    }
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0 1 0
+          transparency 0.5
+        }
+      }
+      geometry Cylinder {
+        height 0.01
+        radius IS reachRadius
+      }
+    }
+  ]
+}

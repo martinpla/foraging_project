@@ -1,0 +1,19 @@
+#VRML_OBJ R2020a utf8
+DEF Cell Shape {
+  appearance Appearance {
+    material Material {
+      diffuseColor 0 1 0
+      emissiveColor 0 1 0
+    }
+  }
+  geometry IndexedLineSet {
+    coord Coordinate {
+      point [
+        0 .05 0, 1 .05 0, 1 .05 -1 , 0 .05 -1
+      ]
+    }
+    coordIndex [
+      0, 1, 2, 3, 0, -1 
+	  ]
+  }
+}
