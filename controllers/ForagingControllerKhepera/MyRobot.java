@@ -33,11 +33,12 @@ public class MyRobot extends Supervisor {
  public int timeStep;
  public double[] nestCoords;
  public double nestRadius;
- private final double cellSize = 0.1;
+ public final double cellSize = 0.1;
  public int[] currentCell = new int[2]; 
- 
+ public int[] lastMarkedCell = new int[2];
  public double[] atractor; 
  public boolean atractorIsObject;
+ public Field grid_children;
  
  public Robot robot;
  public GPS gps;
@@ -108,10 +109,12 @@ if(fs == null) {
   root_children.importMFNodeFromString(-1, "DEF fs FoodSource {}");
   } 
 
-//Creo el grid si no esta creado ya
+//Creo el g rid si no esta creado ya
 Node grid = this.getFromDef("grid");
 if(grid == null) { 
   root_children.importMFNodeFromString(-1, "DEF grid Group {}");
+  grid = this.getFromDef("grid");
+  grid_children = grid.getField("children");
   } 
 
 //
@@ -157,7 +160,7 @@ if(cell == null) { createCell(x,y);
 }
  
 public void createCell(int x, int y) {
-Field grid_children = this.getFromDef("Grid").getField("children");
+//Field grid_children = this.getFromDef("Grid").getField("children");
 String Cell_str = String.format("DEF cell_%d_%d Cell{%n", x, y);
 Cell_str = Cell_str.concat("  translation " + x*cellSize  + " 0.01 " + -1*y*cellSize  );
 String size_str = "  cellSize " + cellSize + " " + cellSize ;

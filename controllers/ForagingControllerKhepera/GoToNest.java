@@ -15,6 +15,7 @@ private Motor motorL;
 private Pen pen;
 private boolean suppressed;
 private boolean callStep;
+private double cellSize;
 
 
 //private GPS gps
@@ -25,6 +26,7 @@ public GoToNest(MyRobot r, boolean cs) {
   
   suppressed = true;
   callStep = cs;
+  cellSize = r.cellSize;
 }
 
 
@@ -58,7 +60,17 @@ public void action() {
      wr = robot.computewr(V,W);
     motorL.setVelocity(wl);
     motorR.setVelocity(wr);
-  
+    
+    //dejo feromona si mi celda actual es distinta de la ultima marcada
+    int[] currentCell = { (int) Math.round( myPos[0]/cellSize), (int) Math.round( myPos[1]/cellSize)  };
+    if( ! Arrays.equals(currentCell, robot.lastMarkedCell)) {
+                //si currentCell es distinto de mi celda actual
+                //significa que entré a una nueva celda. Actualizo currentCell
+                robot.lastMarkedCell = currentCell.clone();
+                robot.releasePheromone(2);
+                // Si vengo con comida dejo dos feromonas en la nueva celda
+                //if (hasFood)  { releasePheromone(2); } 
+            }
      
   
   }// fin del while
