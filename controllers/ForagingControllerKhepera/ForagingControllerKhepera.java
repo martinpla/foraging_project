@@ -40,9 +40,10 @@ public class ForagingControllerKhepera {
     LoadFood load = new LoadFood(robot, false);
     GoToNest goToNest = new GoToNest(robot, false);
     GoToFood goToFood = new GoToFood(robot, false);
+    FollowTrail followTrail = new FollowTrail(robot, false);
     Wander wander = new Wander(robot, false, 7);
     //Behavior[] Behaviors = {goToNest,  avoid};
-    Behavior[] Behaviors = {wander, goToFood, goToNest, load, unload, avoid};
+    Behavior[] Behaviors = {wander, followTrail, goToFood, goToNest, load, unload, avoid};
     Arbitrator A = new Arbitrator(Behaviors);
     A.start();    
 

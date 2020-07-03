@@ -145,6 +145,15 @@ produceThread.scheduleWithFixedDelay(new Runnable() {
 //this.releasePheromone();
 } //fin constructor
 
+public int pheromoneValue(int x, int y) {
+//busco la celda x y
+Node cell = this.getFromDef(String.format("cell_%d_%d", x, y));
+if(cell == null) {return 0;}
+else { Field f = cell.getField("value");
+       int value = f.getSFInt32();
+       return value; }
+}
+
 public void releasePheromone(int quantity) {
 //leaves two particles of pheromone at the current location cell 
 double[] pos = currentPosition();
@@ -220,7 +229,6 @@ grid_children.importMFNodeFromString(-1, Cell_str);
   values[2] = usF.getValue();
   values[3] = usD.getValue();
   values[4] = usDD.getValue();
-  System.out.println("getSensorValues");
   return values;
   } 
  

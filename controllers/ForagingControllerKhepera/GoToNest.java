@@ -46,7 +46,7 @@ public void action() {
   robot.atractor = robot.nestCoords.clone();
   robot.atractorIsObject = true;
   while (!suppressed) {
-    
+     System.out.println("GoToNest action while");
      myPos = robot.currentPosition();
      nestDir = Math.atan2(robot.nestCoords[1]- myPos[1], robot.nestCoords[0]- myPos[0] );
      double currentDir = robot.currentDirection();

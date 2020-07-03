@@ -48,7 +48,7 @@ public boolean takeControl() {
     robot.step(32);
     } 
   
-  System.out.println("Avoid  takeControl  "); // + sensorValue[2]);
+   // + sensorValue[2]);
 //  if(!suppressed) {return true; }
  /* sensorValues = robot.getSensorValues();
   for (int i = 0; i < sensorValues.length; i++) {  
