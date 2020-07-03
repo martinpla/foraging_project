@@ -1,0 +1,11 @@
+Webots Proto Cache File version 1.4
+protoFileHash: d7d8d23cf70b4e2ead134dd3d0baf0f1
+containsDevices: 0
+baseType: Transform
+slotType: 
+parameters: translation,value,foodRadius,reachRadius
+tags: 
+license: 
+licenseUrl: 
+documentationUrl: 
+info: 

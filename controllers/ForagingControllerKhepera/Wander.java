@@ -61,7 +61,7 @@ public Wander(MyRobot r, boolean cs, long l) {
                     int i = Math.round((float) Math.random()*(turnDirs.length - 1));
                     theta = Math.toRadians(turnDirs[i]);
                     //wanderDir = robot.currentDirection() + Math.toRadians(turnDirs[i]);
-                    System.out.println("new theta =  " + Math.toDegrees(theta));
+                    //System.out.println("new theta =  " + Math.toDegrees(theta));
                     //robot.atractor[0] = Math.cos(wanderDir);
                     //robot.atractor[1] = Math.sin(wanderDir);
                     DantIsValid = false;
@@ -81,9 +81,9 @@ public boolean takeControl() {
   if (callStep) { 
     robot.step(32);
     } 
-  if(!robot.hasFood) {return true;}
-  else { return false;}
-  
+  /*if(!robot.hasFood) {return true;}
+  else { return false;}*/
+  return true;
   }
   
 
@@ -99,12 +99,13 @@ public void action() {
   //robot.atractor[1] = Math.sin(wanderDir);
   
  
-   System.out.println("Deambular Action");
+  // System.out.println("Deambular Action");
  //System.out.println("Wander ACtion");
    while (!suppressed) {
+     System.out.println("wander action while");
 //      double currDir = robot.currentDirection();
   //    theta = robot.turningAngle(robot.currentDirection(), wanderDir);     
-      System.out.println("Deambular Action while, me falta girar theta = " + Math.toDegrees(theta) );
+      //System.out.println("Deambular Action while, me falta girar theta = " + Math.toDegrees(theta) );
       Dact = robot.currentDirection();
       if(Math.abs(theta) > Math.PI/2) {
         theta = 0;
@@ -129,8 +130,6 @@ public void action() {
     }// fin del while
     
     //Deambular va a perder el control
-    System.out.println("Deambular se va del Action");
-
     
     DantIsValid = false; 
     // dejo theta en atractor
