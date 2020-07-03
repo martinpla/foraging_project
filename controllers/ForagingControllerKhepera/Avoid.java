@@ -33,6 +33,15 @@ public Avoid(MyRobot r, boolean cs) {
   force = new double[2];
 }
 
+private boolean obstacleDetected() {
+  sensorValues = robot.getSensorValues();
+  for (int i = 0; i < sensorValues.length; i++) {  
+    if (sensorValues[i] > radius[i]) {
+        return true;
+    }
+  }
+  return false;
+}
 
 public boolean takeControl() {
   if (callStep) { 
@@ -40,28 +49,24 @@ public boolean takeControl() {
     } 
   
   System.out.println("Avoid  takeControl  "); // + sensorValue[2]);
-  if(!suppressed) {return true; }
-  sensorValues = robot.getSensorValues();
-  
-  
-  System.out.println("tk sensorValues = " + sensorValues[0] + ", " + sensorValues[1]+ ", " + sensorValues[2] + ", " + sensorValues[3]+ ", " + sensorValues[4]);
+//  if(!suppressed) {return true; }
+ /* sensorValues = robot.getSensorValues();
   for (int i = 0; i < sensorValues.length; i++) {  
-    if (sensorValues[i] > radius[i]) {
-      System.out.println("avoid tk = true");
-  
-      return true;
-    }
+    if (sensorValues[i] > radius[i]) { return true; }
   }
-  return false;
+  return false;*/
+  return obstacleDetected();
 }  
 
 public void action() {
+  suppressed = false;
+  //inicializo fuerza en 0 0
+  while (!suppressed) {
+  
   double[] force = new double[2];
   //double theta, atractorDir;
   //suppressed = false;
- // while (!suppressed) {
   
-  sensorValues = robot.getSensorValues();
   
   // Inicializo la fuerza resultante en el atractor
   // el atractor depende de cual era el ultimo comportamiento de transporte
@@ -84,6 +89,7 @@ public void action() {
  
   //Para cada sensor, si su valor está dentro de la burbuja
   //calculo su vector repulsor y lo sumo a fuerza
+  sensorValues = robot.getSensorValues();  
   for (int i = 0; i < sensorValues.length; i++) {  
     if (sensorValues[i] > radius[i]) {
     // el vector repulsor tiene direccion repulsionDir[i]
@@ -108,7 +114,10 @@ public void action() {
   motorL.setVelocity(wl);
   motorR.setVelocity(wr);
    
-  //}// fin del while
+  boolean continuar = this.obstacleDetected();  
+  System.out.println("continuar da " + continuar);
+  if(!continuar  ) {suppressed = true; } 
+  }// fin del while
   
   }
 
