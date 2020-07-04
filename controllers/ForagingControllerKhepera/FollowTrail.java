@@ -93,14 +93,21 @@ public void action() {
         // distancia a la celda x y     
         d = (double) ( Math.abs(i - 1) + Math.abs( j - 1)); 
         //me fijo si tiene feromona
-        v = (double) robot.pheromoneValue(x-1+i, y-1+j);
-        if(v <= 0) { v = 0.2;}
-          probs[i][j] =  v / d ;
+        System.out.println("bandera 1");
+        int k = x-1+i;
+        int l = y-1+j;
+        int cant = robot.pheromoneValue(k, l);
+        
+        System.out.println("bandera 2");
+
+        if(cant <= 0) { v = 0.2;}
+        else { v = (double) cant;}  
+        probs[i][j] =  v / d ;
         }    
       P += probs[i][j]; 
        }
   } // fin primer recorrida matriz> inicializacion
-  System.out.println("bandera 1");
+  System.out.println("bandera 3");
   i = 0;
   j = 0;
   //sorteo numero al azar entre 0 y P
@@ -118,7 +125,7 @@ public void action() {
           {  random -= probs[i][j]; } 
         }   
      }
-   System.out.println("bandera 2");
+   System.out.println("bandera 4");
 
    //asigno a i j como celda destino
    i += x-1 ;

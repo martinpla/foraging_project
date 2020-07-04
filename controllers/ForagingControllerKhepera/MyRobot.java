@@ -39,7 +39,7 @@ public class MyRobot extends Supervisor {
  public double[] atractor; 
  public boolean atractorIsObject;
  public Field grid_children;
- 
+ //public Field root_children;
  public Robot robot;
  public GPS gps;
  public Compass compass;
@@ -147,11 +147,17 @@ produceThread.scheduleWithFixedDelay(new Runnable() {
 
 public int pheromoneValue(int x, int y) {
 //busco la celda x y
+System.out.println(String.format("pheromoneValue(%d, %d)",x, y ));
 Node cell = this.getFromDef(String.format("cell_%d_%d", x, y));
-if(cell == null) {return 0;}
+if(cell == null) {System.out.println("no encontre cell");return 0;}
 else { Field f = cell.getField("value");
-       int value = f.getSFInt32();
-       return value; }
+       if(f == null) {System.out.println("no encontre field"); return 0;} 
+       else { int value = f.getSFInt32(); 
+              System.out.println(String.format("cell_%d_%d tiene value %d", x, y, value));
+              return value;
+             } 
+       
+       }
 }
 
 public void releasePheromone(int quantity) {
@@ -175,7 +181,9 @@ Cell_str = Cell_str.concat("  translation " + x*cellSize  + " 0.01 " + -1*y*cell
 String size_str = "  cellSize " + cellSize + " " + cellSize ;
 Cell_str = Cell_str.concat(size_str);
 Cell_str = Cell_str.concat("}");
-grid_children.importMFNodeFromString(-1, Cell_str); 
+Node root = this.getRoot();
+Field root_children = root.getField("children");
+root_children.importMFNodeFromString(-1, Cell_str); 
 }
 
  public double computeAbsV(double W) {

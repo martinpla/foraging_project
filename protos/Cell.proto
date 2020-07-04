@@ -1,4 +1,4 @@
-#VRML_OBJ R2020a utf8
+#VRML_SIM R2020a utf8
 PROTO Cell 
 [ field SFVec3f    translation     0 0.01 0         # Is `Transform.translation`.
   field SFVec2f    cellSize 	   0.2 0.2  
