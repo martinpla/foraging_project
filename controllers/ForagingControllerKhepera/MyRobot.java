@@ -45,9 +45,7 @@ public class MyRobot extends Supervisor {
  public Compass compass;
  public Motor motorL, motorR;
  public DistanceSensor usII, usI, usF, usD, usDD;
- //thread for producing pheromone
- static ScheduledExecutorService produceThread;  
-   
+  
  public MyRobot() {
  //constructor
 
@@ -88,94 +86,64 @@ atractorIsObject = false;
 Node root = this.getRoot();
 Field root_children = root.getField("children");
 
-//Creo el nido si no esta creada ya
+//Create nest if it doesn´t exists already
 Node nest = this.getFromDef("nest");
 if(nest == null) { 
   root_children.importMFNodeFromString(-1, "DEF nest Nest {}");
   
   nest = this.getFromDef("nest");
-  //Field nestTranslationField = nest.getField("translation");
-  double[] nestTranslation = nest.getField("translation").getSFVec3f(); 
+  Field nestTranslationField = nest.getField("translation");
+  double[] nestTranslation = nestTranslationField.getSFVec3f(); 
   nestCoords = new double[2];
   nestCoords[0] = nestTranslation[0]; 
-  nestCoords[1] = -nestTranslation[2]; 
-  
+  nestCoords[1] = -nestTranslation[2];  
   nestRadius = nest.getField("radius").getSFFloat();
   } 
 
-//Creo la fuente de comida si no esta creada ya
+//Create food source if it doesn´t exists already
 Node fs = this.getFromDef("fs");
 if(fs == null) { 
   root_children.importMFNodeFromString(-1, "DEF fs FoodSource {}");
   } 
 
-//Creo el g rid si no esta creado ya
+//Create grid if it doesn´t exists already
 Node grid = this.getFromDef("grid");
 if(grid == null) { 
   root_children.importMFNodeFromString(-1, "DEF grid Group {}");
   grid = this.getFromDef("grid");
   grid_children = grid.getField("children");
   } 
-
-//
-
-/*
-//creo el hilo encargado de dejar feromona
-produceThread = Executors.newSingleThreadScheduledExecutor();
-//Tdelay es el cada cuanto chequeo si cambie de celda
-//tdelay debe ser menor que cellSize/Vmax 
-long Tdelay = (long) ( ( cellSize*1000 ) / computeAbsV(0))  ;
-produceThread.scheduleWithFixedDelay(new Runnable() {
-            @Override
-            public void run() {
-              //me fijo si current cell cambió
-              double[] pos = currentPosition();
-              int[] cell = { (int) Math.round( pos[0]/cellSize), (int) Math.round( pos[1]/cellSize)  };
-              if( ! Arrays.equals(cell, currentCell)) {
-                //si currentCell es distinto de mi celda actual
-                //significa que entré a una nueva celda. Actualizo currentCell
-                currentCell = cell.clone();
-                
-                // Si vengo con comida dejo dos feromonas en la nueva celda
-                //if (hasFood)  { releasePheromone(2); } 
-            }
-        }, 0, Tdelay /2, TimeUnit.MILLISECONDS);
-
-*/
-//this.releasePheromone();
 } //fin constructor
 
 public int pheromoneValue(int x, int y) {
-//busco la celda x y
-System.out.println(String.format("pheromoneValue(%d, %d)",x, y ));
-Node cell = this.getFromDef(String.format("cell_%d_%d", x, y));
-if(cell == null) {System.out.println("no encontre cell");return 0;}
+//Look for cell x y
+String cellName = String.format("cell_%d_%d", x, y);
+Node cell = this.getFromDef(cellName);
+if(cell == null) { return 0;}
 else { Field f = cell.getField("value");
-       if(f == null) {System.out.println("no encontre field"); return 0;} 
+       if(f == null) { return 0;} 
        else { int value = f.getSFInt32(); 
-              System.out.println(String.format("cell_%d_%d tiene value %d", x, y, value));
-              return value;
-             } 
-       
+              return value; } 
        }
 }
 
 public void releasePheromone(int quantity) {
-//leaves two particles of pheromone at the current location cell 
+//leaves particles of pheromone at the current cell 
 double[] pos = currentPosition();
 int x = (int) Math.round( pos[0]/cellSize);
 int y = (int) Math.round( pos[1]/cellSize);
-Node cell = this.getFromDef(String.format("cell_%d_%d", x, y));
+String cellName = String.format("cell_%d_%d", x, y);
+Node cell = this.getFromDef(cellName);
 if(cell == null) { createCell(x,y); 
  } else {
   Field f = cell.getField("value");
-  int newValue = f.getSFInt32() + quantity;
-  f.setSFInt32(newValue + quantity);
+  int newValue = f.getSFInt32();
+  newValue += quantity;
+  f.setSFInt32(newValue);
   }
 }
  
 public void createCell(int x, int y) {
-//Field grid_children = this.getFromDef("Grid").getField("children");
 String Cell_str = String.format("DEF cell_%d_%d Cell{%n", x, y);
 Cell_str = Cell_str.concat("  translation " + x*cellSize  + " 0.01 " + -1*y*cellSize  );
 String size_str = "  cellSize " + cellSize + " " + cellSize ;
@@ -220,8 +188,6 @@ root_children.importMFNodeFromString(-1, Cell_str);
    // return theta = best turning angle between -PI and +PI 
    // from initial orientation to reach final orientation 
    double theta;
-   
-
    theta = fin - ini;
    if (Math.abs(theta) <= Math.PI) 
      {return theta;}
@@ -240,14 +206,4 @@ root_children.importMFNodeFromString(-1, Cell_str);
   return values;
   } 
  
-/* 
-  public double[] getIRValues() {
-  double[] values = new double[4]; 
-  values[0] = dsI.getValue();
-  values[1] = dsFI.getValue();
-  values[2] = dsFD.getValue();
-  values[3] = dsD.getValue();
-  return values;
-  }
-*/   
-}
+ }

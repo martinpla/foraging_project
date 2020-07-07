@@ -18,8 +18,6 @@ private boolean suppressed;
 private boolean callStep;
 private double cellSize;
 
-double[] myPos;
- //my cell index
 
 //private GPS gps
 public FollowTrail(MyRobot r, boolean cs) {
@@ -74,10 +72,7 @@ public void action() {
   //x y = celda actual
   double[] myPos = robot.currentPosition();
   x = (int) Math.round( myPos[0]/cellSize);
-  y = (int) Math.round( myPos[1]/cellSize);
-  System.out.println("Follow Action en la celda " + x + " " + y);
-
-  
+  y = (int) Math.round( myPos[1]/cellSize); 
   P = 0; 
   v = 0; 
   d = 0;
@@ -85,7 +80,7 @@ public void action() {
     for( j = 0; j <= 2 ; j++ ) {
       //para cada celda adyacente obtengo su value v
       //me fijo si existe y si tiene value 
-      //si no existe o value = 0 asigno v pequeño v = 0.5 por ejemplo 
+      //si no existe o value = 0 asigno v pequeño v = 0.2 por ejemplo 
       if( i == 1 && j == 1 )
         { probs[i][j] = 0; d= 0; }   
       else
@@ -93,13 +88,9 @@ public void action() {
         // distancia a la celda x y     
         d = (double) ( Math.abs(i - 1) + Math.abs( j - 1)); 
         //me fijo si tiene feromona
-        System.out.println("bandera 1");
         int k = x-1+i;
         int l = y-1+j;
         int cant = robot.pheromoneValue(k, l);
-        
-        System.out.println("bandera 2");
-
         if(cant <= 0) { v = 0.2;}
         else { v = (double) cant;}  
         probs[i][j] =  v / d ;
@@ -107,7 +98,6 @@ public void action() {
       P += probs[i][j]; 
        }
   } // fin primer recorrida matriz> inicializacion
-  System.out.println("bandera 3");
   i = 0;
   j = 0;
   //sorteo numero al azar entre 0 y P
@@ -125,16 +115,13 @@ public void action() {
           {  random -= probs[i][j]; } 
         }   
      }
-   System.out.println("bandera 4");
-
    //asigno a i j como celda destino
    i += x-1 ;
    j += y-1 ;  
-   System.out.println(String.format("celda actual %d %d, celda elegida: %d %d", x, y, i, j));
-  //x y = celda actual
+  //x y = current cell, i j = destination cell
   while(x != i || y != j) {
-    // mientras no este en la nueva celda
-    //calculo el angulo hacia la celda de destino i j
+    // while robot doesn´t arrive to i j cell
+    // calculate orientation angle to i j cell centre
     myPos = robot.currentPosition();
     destDir = Math.atan2( j*cellSize - myPos[1], i*cellSize - myPos[0]) ;
     theta = robot.turningAngle(robot.currentDirection(), destDir);
@@ -145,7 +132,7 @@ public void action() {
     motorL.setVelocity(wl);
     motorR.setVelocity(wr);
     
-    // actualizo celda actual 
+    // update current cell
     x = (int) Math.round( myPos[0]/cellSize);
     y = (int) Math.round( myPos[1]/cellSize);
   }   
@@ -156,61 +143,12 @@ public void action() {
   if( robot.pheromoneValue(x,y) > 0 ) { robot.releasePheromone(1);}
   else { robot.releasePheromone(2);}
   */
-  
   } //fin while
 
 } //fin action 
-  /*double[] myPos;
-  int[] cell = new int[2];
-  double nestDir, theta , V, W, wr, wl;
-  suppressed = false;
-  robot.atractor = robot.nestCoords.clone();
-  robot.atractorIsObject = true;
-  while (!suppressed) {
-    
-     myPos = robot.currentPosition();
-     nestDir = Math.atan2(robot.nestCoords[1]- myPos[1], robot.nestCoords[0]- myPos[0] );
-     double currentDir = robot.currentDirection();
-     theta = robot.turningAngle(currentDir, nestDir);
-     
-     
-     W = Math.signum(theta)*theta*theta*(robot.Wmax / (Math.PI*Math.PI));
-     V = robot.computeAbsV(W);
-     
-     wl = robot.computewl(V,W);
-     wr = robot.computewr(V,W);
-     motorL.setVelocity(wl);
-     motorR.setVelocity(wr);
-     
-     //Si la celda actual es distinta de la ultima marcada con feromona
-     //dejo 2 feromonas
-     //obtengo celda actual
-     //double[] pos = currentPosition(); // current position coords are rounded to Int
-     //cell = { (int) Math.round( myPos[0]/cellSize), (int) Math.round( myPos[1]/cellSize)  };
-     cell[0] = (int) Math.round( myPos[0]/cellSize);
-     cell[1] = (int) Math.round( myPos[1]/cellSize);
-     
-     
-     if( ! Arrays.equals(cell, robot.lastMarkedCell)) {
-                //si currentCell es distinto de mi celda actual
-                //significa que entré a una nueva celda. Actualizo currentCell
-                robot.lastMarkedCell = cell.clone();
-                
-                
-                // Si vengo con comida significa que el ultimo activo fue goToNest
-                // en ese caso dejo dos feromonas en la nueva celda
-                if (robot.hasFood)  { robot.releasePheromone(2); }
-                
-                // else TO DO 
-                // faltan condiciones para follow trail 
-                //se 
-                */
-      
   
-
 public void suppress() {
   suppressed = true;
-  
   }
 
 }

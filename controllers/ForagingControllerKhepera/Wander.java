@@ -4,7 +4,6 @@ import lejos.robotics.subsumption.*;
 //  import com.cyberbotics.webots.controller.DistanceSensor;
 import com.cyberbotics.webots.controller.Motor;
 import com.cyberbotics.webots.controller.Robot;
-import com.cyberbotics.webots.controller.Pen;
 import com.cyberbotics.webots.controller.DistanceSensor;
 import java.util.Date;
 import java.util.concurrent.Executors;
@@ -77,35 +76,20 @@ public Wander(MyRobot r, boolean cs, long l) {
 
 
 public boolean takeControl() {
-  //System.out.println("wander takeControl");
-  if (callStep) { 
+ if (callStep) { 
     robot.step(32);
     } 
-  /*if(!robot.hasFood) {return true;}
-  else { return false;}*/
-  return true;
-  }
+ return true;
+ }
   
 
 public void action() {
   suppressed = false;
-  
   robot.atractorIsObject = false;
   
   if(robot.atractor == null) { 
     robot.atractor = new double[2];}
-    
-  //robot.atractor[0] = Math.cos(wanderDir);
-  //robot.atractor[1] = Math.sin(wanderDir);
-  
- 
-  // System.out.println("Deambular Action");
- //System.out.println("Wander ACtion");
-   while (!suppressed) {
-     System.out.println("wander action while");
-//      double currDir = robot.currentDirection();
-  //    theta = robot.turningAngle(robot.currentDirection(), wanderDir);     
-      //System.out.println("Deambular Action while, me falta girar theta = " + Math.toDegrees(theta) );
+  while (!suppressed) {
       Dact = robot.currentDirection();
       if(Math.abs(theta) > Math.PI/2) {
         theta = 0;
@@ -113,12 +97,12 @@ public void action() {
         }
       else {
         if( DantIsValid )
-           { theta -= Dact - Dant; } //theta se actualiza: theta = lo que me falta por girar ahora }
+           { theta -= Dact - Dant; } //update theta : theta = what is left to turn now 
         else 
             { DantIsValid = true ; }
         Dant = Dact;   
       }  
-      //aplico W en funcion del theta actual
+      //aplies W depending of theta 
       W = Math.signum(theta)*theta*theta*(robot.Wmax / (Math.PI*Math.PI));
       V = robot.computeAbsV(W);
       wl = robot.computewl(V,W);
@@ -129,7 +113,7 @@ public void action() {
       
     }// fin del while
     
-    //Deambular va a perder el control
+    //wander is going to loose control
     
     DantIsValid = false; 
     // dejo theta en atractor
@@ -137,11 +121,9 @@ public void action() {
     robot.atractor[1] = Math.sin(theta);
     robot.atractorIsObject = false; 
 
-
 }
 
 public void suppress() {
-  System.out.println("Wander suppress");
   suppressed = true;
   }
 

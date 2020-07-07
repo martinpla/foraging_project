@@ -51,19 +51,17 @@ public boolean takeControl() {
 
 public void action() {
   //double foodDir, theta , V, W;
-  if(this.nest == null) {System.out.println("L55 nest es null");}
-  nestValueField = this.nest.getField("value");
-  System.out.println("bander L56");
-  int value = nestValueField.getSFInt32();
-  System.out.println("UnloadFood L58 nestValue es " + value);
-  value += 1;
-  nestValueField.setSFInt32(value); 
+  if(this.nest != null) {
+    nestValueField = this.nest.getField("value");
+    int value = nestValueField.getSFInt32();
+    value += 1;
+    nestValueField.setSFInt32(value); 
+    }
   robot.hasFood = false;
   //atractor ya no es el nido
   robot.atractor = null; 
 }
   
 public void suppress() {
-  System.out.println("Unload supress");
   }
 }

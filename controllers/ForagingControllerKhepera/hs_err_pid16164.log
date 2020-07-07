@@ -1,0 +1,267 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ffeea4ed320, pid=16164, tid=0x0000000000001e54
+#
+# JRE version: Java(TM) SE Runtime Environment (8.0_101-b13) (build 1.8.0_101-b13)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (25.101-b13 mixed mode windows-amd64 compressed oops)
+# Problematic frame:
+# C  [msvcrt.dll+0x5d320]
+#
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.java.com/bugreport/crash.jsp
+# The crash happened outside the Java Virtual Machine in native code.
+# See problematic frame for where to report the bug.
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0000000000f0d800):  JavaThread "main" [_thread_in_native, id=7764, stack(0x0000000002770000,0x0000000002870000)]
+
+siginfo: ExceptionCode=0xc0000005, reading address 0x0000000000000000
+
+Registers:
+RAX=0x00000000195611b0, RBX=0x000000001955c860, RCX=0x0000000000000000, RDX=0x0000000019800d40
+RSP=0x000000000286edf8, RBP=0x00000000195611b0, RSI=0x0000000000000326, RDI=0x000000001980ed40
+R8 =0x00000000195611b0, R9 =0x000000001980ed40, R10=0x0000000000000440, R11=0x8101010101010100
+R12=0x0000000000000000, R13=0x000000000000001c, R14=0x000000000286f088, R15=0x0000000000f0d800
+RIP=0x00007ffeea4ed320, EFLAGS=0x0000000000010297
+
+Top of Stack: (sp=0x000000000286edf8)
+0x000000000286edf8:   000000006aa5e359 000000001954c010
+0x000000000286ee08:   000000000000001c 00007ffeeb312000
+0x000000000286ee18:   000000006aa57ea8 0000000000000326
+0x000000000286ee28:   0000000000000000 00007ffeeb312000
+0x000000000286ee38:   00007ffeeb311f80 000000001954c010
+0x000000000286ee48:   000000006aa5eb21 000000000000001c
+0x000000000286ee58:   0000000000001000 00000000d6b9e250
+0x000000000286ee68:   000000006aa5b228 0000000000000000
+0x000000000286ee78:   0000000000000000 000000006aa99560
+0x000000000286ee88:   000000006aaa4008 000000006aa99560
+0x000000000286ee98:   000000001954c010 000000000286f088
+0x000000000286eea8:   000000006aa5956b 000000006aa99560
+0x000000000286eeb8:   0000000000000000 0000000000000000
+0x000000000286eec8:   00000000000003a0 0000000000f0d9f8
+0x000000000286eed8:   00000000198303d0 00000000198303da
+0x000000000286eee8:   000000000286efb0 000000001954c010 
+
+Instructions: (pc=0x00007ffeea4ed320)
+0x00007ffeea4ed300:   00 00 00 75 e6 90 49 bb 00 01 01 01 01 01 01 81
+0x00007ffeea4ed310:   49 8d 14 09 66 81 e2 ff 0f 66 81 fa f8 0f 77 cb
+0x00007ffeea4ed320:   48 8b 01 49 8b 14 09 48 3b c2 75 bf 49 ba ff fe
+0x00007ffeea4ed330:   fe fe fe fe fe 7e 4c 03 d2 48 83 f0 ff 48 83 c1 
+
+
+Register to memory mapping:
+
+RAX=0x00000000195611b0 is an unknown value
+RBX=0x000000001955c860 is an unknown value
+RCX=0x0000000000000000 is an unknown value
+RDX=0x0000000019800d40 is pointing into the stack for thread: 0x0000000018fbf800
+RSP=0x000000000286edf8 is pointing into the stack for thread: 0x0000000000f0d800
+RBP=0x00000000195611b0 is an unknown value
+RSI=0x0000000000000326 is an unknown value
+RDI=0x000000001980ed40 is pointing into the stack for thread: 0x0000000018fbf800
+R8 =0x00000000195611b0 is an unknown value
+R9 =0x000000001980ed40 is pointing into the stack for thread: 0x0000000018fbf800
+R10=0x0000000000000440 is an unknown value
+R11=0x8101010101010100 is an unknown value
+R12=0x0000000000000000 is an unknown value
+R13=0x000000000000001c is an unknown value
+R14=0x000000000286f088 is pointing into the stack for thread: 0x0000000000f0d800
+R15=0x0000000000f0d800 is a thread
+
+
+Stack: [0x0000000002770000,0x0000000002870000],  sp=0x000000000286edf8,  free space=1019k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [msvcrt.dll+0x5d320]
+C  [Controller.dll+0x1e359]
+C  [Controller.dll+0x1eb21]
+C  [Controller.dll+0x1956b]
+C  [Controller.dll+0x1a5b9]
+C  [Controller.dll+0x20107]
+C  [CppController.dll+0x963e]
+C  [JavaController.dll+0xa5c3]
+C  0x0000000002bd9b6c
+
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+J 265  com.cyberbotics.webots.controller.wrapperJNI.Supervisor_getFromDefPrivate(JLcom/cyberbotics/webots/controller/Supervisor;Ljava/lang/String;)J (0 bytes) @ 0x0000000002bd9aee [0x0000000002bd9a80+0x6e]
+J 406 C2 com.cyberbotics.webots.controller.Supervisor.getFromDef(Ljava/lang/String;)Lcom/cyberbotics/webots/controller/Node; (15 bytes) @ 0x0000000002c5779c [0x0000000002c57760+0x3c]
+J 404 C2 MyRobot.pheromoneValue(II)I (56 bytes) @ 0x0000000002c7c998 [0x0000000002c7c4c0+0x4d8]
+j  FollowTrail.action()V+164
+j  lejos.robotics.subsumption.Arbitrator.start()V+92
+j  ForagingControllerKhepera.main([Ljava/lang/String;)V+140
+v  ~StubRoutines::call_stub
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x0000000018fbf800 JavaThread "Thread-0" daemon [_thread_in_native, id=4396, stack(0x0000000019710000,0x0000000019810000)]
+  0x0000000018fbc800 JavaThread "pool-1-thread-1" [_thread_blocked, id=2444, stack(0x0000000019610000,0x0000000019710000)]
+  0x0000000018f39800 JavaThread "Service Thread" daemon [_thread_blocked, id=3064, stack(0x0000000019310000,0x0000000019410000)]
+  0x00000000175ca800 JavaThread "C1 CompilerThread2" daemon [_thread_blocked, id=9760, stack(0x0000000018e10000,0x0000000018f10000)]
+  0x00000000175c7000 JavaThread "C2 CompilerThread1" daemon [_thread_blocked, id=13396, stack(0x0000000018d10000,0x0000000018e10000)]
+  0x00000000175c0800 JavaThread "C2 CompilerThread0" daemon [_thread_blocked, id=120, stack(0x0000000018c10000,0x0000000018d10000)]
+  0x00000000175be800 JavaThread "Attach Listener" daemon [_thread_blocked, id=7516, stack(0x0000000018b10000,0x0000000018c10000)]
+  0x00000000175bb800 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=7488, stack(0x0000000018a10000,0x0000000018b10000)]
+  0x0000000002a4a800 JavaThread "Finalizer" daemon [_thread_blocked, id=2596, stack(0x0000000018810000,0x0000000018910000)]
+  0x0000000002a3f800 JavaThread "Reference Handler" daemon [_thread_blocked, id=14552, stack(0x0000000018710000,0x0000000018810000)]
+=>0x0000000000f0d800 JavaThread "main" [_thread_in_native, id=7764, stack(0x0000000002770000,0x0000000002870000)]
+
+Other Threads:
+  0x0000000017588000 VMThread [stack: 0x0000000018610000,0x0000000018710000] [id=9548]
+  0x0000000018f3d800 WatcherThread [stack: 0x0000000019410000,0x0000000019510000] [id=5352]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap:
+ PSYoungGen      total 38400K, used 18668K [0x00000000d5c00000, 0x00000000d8680000, 0x0000000100000000)
+  eden space 33280K, 56% used [0x00000000d5c00000,0x00000000d6e3b220,0x00000000d7c80000)
+  from space 5120K, 0% used [0x00000000d8180000,0x00000000d8180000,0x00000000d8680000)
+  to   space 5120K, 0% used [0x00000000d7c80000,0x00000000d7c80000,0x00000000d8180000)
+ ParOldGen       total 87552K, used 0K [0x0000000081400000, 0x0000000086980000, 0x00000000d5c00000)
+  object space 87552K, 0% used [0x0000000081400000,0x0000000081400000,0x0000000086980000)
+ Metaspace       used 4178K, capacity 4972K, committed 5120K, reserved 1056768K
+  class space    used 447K, capacity 468K, committed 512K, reserved 1048576K
+
+Card table byte_map: [0x0000000011e10000,0x0000000012210000] byte_map_base: 0x0000000011a06000
+
+Marking Bits: (ParMarkBitMap*) 0x0000000073e6a6d0
+ Begin Bits: [0x00000000128c0000, 0x0000000014870000)
+ End Bits:   [0x0000000014870000, 0x0000000016820000)
+
+Polling page: 0x0000000000a20000
+
+CodeCache: size=245760Kb used=2210Kb max_used=2221Kb free=243549Kb
+ bounds [0x0000000002a50000, 0x0000000002cc0000, 0x0000000011a50000]
+ total_blobs=698 nmethods=408 adapters=203
+ compilation: enabled
+
+Compilation events (10 events):
+Event: 45.211 Thread 0x00000000175c7000  404       4       MyRobot::pheromoneValue (56 bytes)
+Event: 45.236 Thread 0x00000000175c7000 nmethod 404 0x0000000002c7c290 code [0x0000000002c7c4c0, 0x0000000002c7d240]
+Event: 46.225 Thread 0x00000000175ca800  405       3       com.cyberbotics.webots.controller.Node::getField (15 bytes)
+Event: 46.225 Thread 0x00000000175ca800 nmethod 405 0x0000000002c5e710 code [0x0000000002c5e880, 0x0000000002c5ea58]
+Event: 48.701 Thread 0x00000000175c0800  406       4       com.cyberbotics.webots.controller.Supervisor::getFromDef (15 bytes)
+Event: 48.709 Thread 0x00000000175c0800 nmethod 406 0x0000000002c575d0 code [0x0000000002c57760, 0x0000000002c57a88]
+Event: 49.031 Thread 0x00000000175c7000  407       4       java.lang.Math::round (70 bytes)
+Event: 49.032 Thread 0x00000000175c7000 nmethod 407 0x0000000002c57e10 code [0x0000000002c57f40, 0x0000000002c57ff8]
+Event: 66.957 Thread 0x00000000175ca800  408       3       java.lang.Math::abs (11 bytes)
+Event: 66.957 Thread 0x00000000175ca800 nmethod 408 0x0000000002c57290 code [0x0000000002c573e0, 0x0000000002c57570]
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (8 events):
+Event: 0.363 Thread 0x0000000000f0d800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x0000000002b87304 method=lejos.robotics.subsumption.Arbitrator.start()V @ 12
+Event: 23.213 Thread 0x0000000000f0d800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x0000000002c480d0 method=java.util.Formatter$Conversion.isValid(C)Z @ 11
+Event: 23.214 Thread 0x0000000000f0d800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x0000000002c52968 method=java.util.Formatter.format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/util/Formatter; @ 76
+Event: 23.577 Thread 0x0000000000f0d800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x0000000002c52968 method=java.util.Formatter.format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/util/Formatter; @ 76
+Event: 23.891 Thread 0x0000000000f0d800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x0000000002c52968 method=java.util.Formatter.format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/util/Formatter; @ 76
+Event: 24.162 Thread 0x0000000000f0d800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x0000000002c52968 method=java.util.Formatter.format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/util/Formatter; @ 76
+Event: 43.984 Thread 0x0000000000f0d800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x0000000002c4316c method=java.lang.Math.round(D)J @ 31
+Event: 43.984 Thread 0x0000000018fbf800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x0000000002c4316c method=java.lang.Math.round(D)J @ 31
+
+Internal exceptions (6 events):
+Event: 0.046 Thread 0x0000000000f0d800 Exception <a 'java/lang/NoSuchMethodError': Method sun.misc.Unsafe.defineClass(Ljava/lang/String;[BII)Ljava/lang/Class; name or signature does not match> (0x00000000d5c07cc0) thrown at [C:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u101\7261\hotspot\sü³Õ›f§?
+Event: 0.046 Thread 0x0000000000f0d800 Exception <a 'java/lang/NoSuchMethodError': Method sun.misc.Unsafe.prefetchRead(Ljava/lang/Object;J)V name or signature does not match> (0x00000000d5c07fa8) thrown at [C:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u101\7261\hotspot\src\share\vm\prims\ƒ™
+Event: 0.336 Thread 0x0000000018fbf800 Exception <a 'java/security/PrivilegedActionException'> (0x00000000d5ebfed0) thrown at [C:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u101\7261\hotspot\src\share\vm\prims\jvm.cpp, line 1386]
+Event: 0.336 Thread 0x0000000018fbf800 Exception <a 'java/security/PrivilegedActionException'> (0x00000000d5ec02c8) thrown at [C:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u101\7261\hotspot\src\share\vm\prims\jvm.cpp, line 1386]
+Event: 0.337 Thread 0x0000000018fbf800 Exception <a 'java/security/PrivilegedActionException'> (0x00000000d5ec4398) thrown at [C:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u101\7261\hotspot\src\share\vm\prims\jvm.cpp, line 1386]
+Event: 0.337 Thread 0x0000000018fbf800 Exception <a 'java/security/PrivilegedActionException'> (0x00000000d5ec4790) thrown at [C:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u101\7261\hotspot\src\share\vm\prims\jvm.cpp, line 1386]
+
+Events (10 events):
+Event: 36.051 loading class java/lang/Math$RandomNumberGeneratorHolder
+Event: 36.051 loading class java/lang/Math$RandomNumberGeneratorHolder done
+Event: 36.051 loading class java/util/Random
+Event: 36.052 loading class java/util/Random done
+Event: 43.984 Thread 0x0000000000f0d800 Uncommon trap: trap_request=0xffffff65 fr.pc=0x0000000002c4316c
+Event: 43.984 Thread 0x0000000018fbf800 Uncommon trap: trap_request=0xffffff65 fr.pc=0x0000000002c4316c
+Event: 43.984 Thread 0x0000000018fbf800 DEOPT PACKING pc=0x0000000002c4316c sp=0x000000001980ee80
+Event: 43.984 Thread 0x0000000018fbf800 DEOPT UNPACKING pc=0x0000000002a9582a sp=0x000000001980ede8 mode 2
+Event: 43.984 Thread 0x0000000000f0d800 DEOPT PACKING pc=0x0000000002c4316c sp=0x000000000286f130
+Event: 43.984 Thread 0x0000000000f0d800 DEOPT UNPACKING pc=0x0000000002a9582a sp=0x000000000286f0a8 mode 2
+
+
+Dynamic libraries:
+0x00007ff6b4f20000 - 0x00007ff6b4f57000 	C:\Program Files\Java\jdk1.8.0_101\bin\javaw.exe
+0x00007ffeeba20000 - 0x00007ffeebc10000 	C:\WINDOWS\SYSTEM32\ntdll.dll
+0x00007ffeeb2f0000 - 0x00007ffeeb3a2000 	C:\WINDOWS\System32\KERNEL32.DLL
+0x00007ffee93f0000 - 0x00007ffee9693000 	C:\WINDOWS\System32\KERNELBASE.dll
+0x00007ffeeb6c0000 - 0x00007ffeeb763000 	C:\WINDOWS\System32\ADVAPI32.dll
+0x00007ffeea490000 - 0x00007ffeea52e000 	C:\WINDOWS\System32\msvcrt.dll
+0x00007ffeeb820000 - 0x00007ffeeb8b7000 	C:\WINDOWS\System32\sechost.dll
+0x00007ffeeb8c0000 - 0x00007ffeeb9e0000 	C:\WINDOWS\System32\RPCRT4.dll
+0x00007ffee9ce0000 - 0x00007ffee9e74000 	C:\WINDOWS\System32\USER32.dll
+0x00007ffee9850000 - 0x00007ffee9871000 	C:\WINDOWS\System32\win32u.dll
+0x00007ffeeabd0000 - 0x00007ffeeabf6000 	C:\WINDOWS\System32\GDI32.dll
+0x00007ffee89e0000 - 0x00007ffee8b74000 	C:\WINDOWS\System32\gdi32full.dll
+0x00007ffee9300000 - 0x00007ffee939e000 	C:\WINDOWS\System32\msvcp_win.dll
+0x00007ffee9880000 - 0x00007ffee997a000 	C:\WINDOWS\System32\ucrtbase.dll
+0x00007ffedbd60000 - 0x00007ffedbfe5000 	C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.18362.476_none_e6c4b11b130f2595\COMCTL32.dll
+0x00007ffeea530000 - 0x00007ffeea866000 	C:\WINDOWS\System32\combase.dll
+0x00007ffee96a0000 - 0x00007ffee9720000 	C:\WINDOWS\System32\bcryptPrimitives.dll
+0x00007ffee9cb0000 - 0x00007ffee9cde000 	C:\WINDOWS\System32\IMM32.DLL
+0x0000000074a60000 - 0x0000000074b32000 	C:\Program Files\Java\jdk1.8.0_101\jre\bin\msvcr100.dll
+0x0000000073650000 - 0x0000000073eea000 	C:\Program Files\Java\jdk1.8.0_101\jre\bin\server\jvm.dll
+0x00007ffee9b50000 - 0x00007ffee9b58000 	C:\WINDOWS\System32\PSAPI.DLL
+0x00007ffedf5a0000 - 0x00007ffedf5aa000 	C:\WINDOWS\SYSTEM32\VERSION.dll
+0x00007ffee5bd0000 - 0x00007ffee5bf4000 	C:\WINDOWS\SYSTEM32\WINMM.dll
+0x00007ffed5e40000 - 0x00007ffed5e49000 	C:\WINDOWS\SYSTEM32\WSOCK32.dll
+0x00007ffeea870000 - 0x00007ffeea8df000 	C:\WINDOWS\System32\WS2_32.dll
+0x00007ffee5ba0000 - 0x00007ffee5bcd000 	C:\WINDOWS\SYSTEM32\WINMMBASE.dll
+0x00007ffee93a0000 - 0x00007ffee93ea000 	C:\WINDOWS\System32\cfgmgr32.dll
+0x0000000075b30000 - 0x0000000075b3f000 	C:\Program Files\Java\jdk1.8.0_101\jre\bin\verify.dll
+0x0000000075b00000 - 0x0000000075b29000 	C:\Program Files\Java\jdk1.8.0_101\jre\bin\java.dll
+0x0000000075ae0000 - 0x0000000075af6000 	C:\Program Files\Java\jdk1.8.0_101\jre\bin\zip.dll
+0x00007ffeeac00000 - 0x00007ffeeb2e5000 	C:\WINDOWS\System32\SHELL32.dll
+0x00007ffeeb770000 - 0x00007ffeeb819000 	C:\WINDOWS\System32\shcore.dll
+0x00007ffee8b80000 - 0x00007ffee92fe000 	C:\WINDOWS\System32\windows.storage.dll
+0x00007ffee8950000 - 0x00007ffee896f000 	C:\WINDOWS\System32\profapi.dll
+0x00007ffee8900000 - 0x00007ffee894a000 	C:\WINDOWS\System32\powrprof.dll
+0x00007ffee88f0000 - 0x00007ffee8900000 	C:\WINDOWS\System32\UMPDC.dll
+0x00007ffeea370000 - 0x00007ffeea3c2000 	C:\WINDOWS\System32\shlwapi.dll
+0x00007ffee8990000 - 0x00007ffee89a1000 	C:\WINDOWS\System32\kernel.appcore.dll
+0x00007ffee9780000 - 0x00007ffee9797000 	C:\WINDOWS\System32\cryptsp.dll
+0x000000006e780000 - 0x000000006e7f1000 	C:\Program Files\Webots\lib\controller\java\JavaController.dll
+0x0000000061440000 - 0x000000006145c000 	C:\Program Files\Webots\msys64\mingw64\bin\libgcc_s_seh-1.dll
+0x0000000064940000 - 0x0000000064956000 	C:\Program Files\Webots\msys64\mingw64\bin\libwinpthread-1.dll
+0x000000006fc40000 - 0x000000006fdf3000 	C:\Program Files\Webots\msys64\mingw64\bin\libstdc++-6.dll
+0x0000000064f40000 - 0x0000000064fe5000 	C:\Program Files\Webots\lib\controller\CppController.dll
+0x000000006aa40000 - 0x000000006aabf000 	C:\Program Files\Webots\lib\controller\Controller.dll
+0x0000000063e00000 - 0x0000000063e0e000 	C:\PROGRA~1\Webots\RESOUR~1\projects\plugins\ROBOT_~1\generic\generic.dll
+0x00007ffedef20000 - 0x00007ffedf114000 	C:\WINDOWS\SYSTEM32\dbghelp.dll
+
+VM Arguments:
+jvm_args: -Djava.library.path=C:/Program Files/Webots/lib/controller/java 
+java_command: ForagingControllerKhepera
+java_class_path (initial): C:/Program Files/Webots/lib/controller/java\Controller.jar;C:/Users/user/DOCUME~1/GitHub/FORAGI~1/CONTRO~1/FORAGI~1/
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=C:\Program Files\Java\jdk1.8.0_101
+JRE_HOME=C:\Program Files\Java\jre1.8.0_144
+PATH=C:\Program Files\Webots\projects\default\libraries\vehicle;C:\Program Files\Webots\resources\projects\libraries\qt_utils;C:\Program Files\Webots\msys64\mingw64\bin;Path=C:\Program Files\Webots\msys64\mingw64\bin;C:\Program Files\Webots\msys64\usr\bin;C:\Program Files (x86)\Lenovo\FusionEngine;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Common Files\lenovo\easyplussdk\bin;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Microsoft SQL Server\130\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\ManagementStudio\;C:\Program Files\Java\jdk1.8.0_101\bin;C:\cygwin\bin;C:\MinGW;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\Gemalto\Classic Client\BIN;C:\Program Files (x86)\Gemalto\Classic Client\BIN;C:\Users\user\AppData\Local\Programs\Python\Python37-32\Scripts\;C:\Users\user\AppData\Local\Programs\Python\Python37-32\;C:\Users\user\AppData\Local\Programs\Python\Python36\Scripts\;C:\Users\user\AppData\Local\Programs\Python\Python36\;C:\Users\user\AppData\Local\Microsoft\WindowsApps;C:\Users\user\AppData\Local\GitHubDesktop\bin;C:\Users\user\AppData\Local\Microsoft\WindowsApps;C:\Users\user\AppData\Local\Programs\Microsoft VS Code\bin;;C:\Program Files\Webots\lib\controller\
+USERNAME=user
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 61 Stepping 4, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 10.0 , 64 bit Build 18362 (10.0.18362.329)
+
+CPU:total 4 (2 cores per cpu, 2 threads per core) family 6 model 61 stepping 4, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, erms, 3dnowpref, lzcnt, ht, tsc, tscinvbit, bmi1, bmi2, adx
+
+Memory: 4k page, physical 8301580k(3296180k free), swap 12364812k(6149948k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (25.101-b13) for windows-amd64 JRE (1.8.0_101-b13), built on Jun 22 2016 01:21:29 by "java_re" with MS VC++ 10.0 (VS2010)
+
+time: Sun Jul 05 20:45:25 2020
+elapsed time: 74 seconds (0d 0h 1m 14s)
+
